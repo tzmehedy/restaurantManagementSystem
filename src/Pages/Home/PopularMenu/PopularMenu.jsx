@@ -14,7 +14,7 @@ const PopularMenu = () => {
   },[])
   console.log(popularMenus)
     return (
-      <div className="">
+      <div className="space-y-10">
         <TileForHome
           heading="From Our Menu"
           subHeading="Check it Out"
@@ -25,6 +25,10 @@ const PopularMenu = () => {
             <PopularSectionCard popularMenu={popularMenu}></PopularSectionCard>
           ))}
         </section>
+
+        <div className='text-center'>
+          <button className='btn font-bold border-l-0 border-t-0 border-r-0 border-b-2 border-gray-700'>View Full Menu</button>
+        </div>
       </div>
     );
 };
