@@ -4,6 +4,7 @@ import OrderOnline from '../Order/OrderOnline';
 import AboutBistro from '../AboutBistro/AboutBistro';
 import PopularMenu from '../PopularMenu/PopularMenu';
 import CallUs from '../CallUs/CallUs';
+import ChefRecommends from '../ChefRcommends/ChefRecommends';
 
 const Home = () => {
     return (
@@ -14,6 +15,7 @@ const Home = () => {
           <AboutBistro></AboutBistro>
           <PopularMenu></PopularMenu>
           <CallUs></CallUs>
+          <ChefRecommends></ChefRecommends>
         </div>
       </div>
     );

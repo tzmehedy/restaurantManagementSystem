@@ -20,7 +20,7 @@ const PopularMenu = () => {
           subHeading="Check it Out"
         ></TileForHome>
 
-        <section className='grid grid-cols-1 md:grid-cols-2 gap-5'>
+        <section className='grid grid-cols-1 md:grid-cols-2 m-5 md:m-0 gap-5'>
           {popularMenus.map((popularMenu) => (
             <PopularSectionCard popularMenu={popularMenu}></PopularSectionCard>
           ))}
