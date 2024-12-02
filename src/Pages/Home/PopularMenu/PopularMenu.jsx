@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import TileForHome from '../../../Components/TileForHome';
-import axios from "axios"
 import PopularSectionCard from './PopularSectionCard';
+import useMenu from '../../../Hooks/useMenu';
 
 const PopularMenu = () => {
-  const [popularMenus, setPopularMenus] = useState([])
-
-  useEffect(()=>{
-    axios("menu.json").then((data) => {
-      const popularMenus = data.data.filter(p=>p.category === "popular") 
-      setPopularMenus(popularMenus)
-    })
-  },[])
+  const menus = useMenu()
+  const popularMenus = menus.filter(item=> item.category === "popular")
+  
     return (
       <div className="space-y-10">
         <TileForHome
