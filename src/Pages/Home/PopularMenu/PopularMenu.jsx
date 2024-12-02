@@ -12,7 +12,6 @@ const PopularMenu = () => {
       setPopularMenus(popularMenus)
     })
   },[])
-  console.log(popularMenus)
     return (
       <div className="space-y-10">
         <TileForHome
@@ -20,14 +19,19 @@ const PopularMenu = () => {
           subHeading="Check it Out"
         ></TileForHome>
 
-        <section className='grid grid-cols-1 md:grid-cols-2 m-5 md:m-0 gap-5'>
+        <section className="grid grid-cols-1 md:grid-cols-2 m-5 md:m-0 gap-5">
           {popularMenus.map((popularMenu) => (
-            <PopularSectionCard popularMenu={popularMenu}></PopularSectionCard>
+            <PopularSectionCard
+              key={popularMenu._id}
+              popularMenu={popularMenu}
+            ></PopularSectionCard>
           ))}
         </section>
 
-        <div className='text-center'>
-          <button className='btn font-bold border-l-0 border-t-0 border-r-0 border-b-2 border-gray-700'>View Full Menu</button>
+        <div className="text-center">
+          <button className="btn font-bold border-l-0 border-t-0 border-r-0 border-b-2 border-gray-700">
+            View Full Menu
+          </button>
         </div>
       </div>
     );
