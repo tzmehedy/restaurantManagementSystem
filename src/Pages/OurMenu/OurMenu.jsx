@@ -8,6 +8,7 @@ import dessertBg from "../../assets/images/menu/dessert-bg.jpeg"
 import pizzaBg from "../../assets/images/menu/pizza-bg.jpg"
 import saladBg from "../../assets/images/menu/salad-bg.jpg"
 import soupBg from "../../assets/images/menu/soup-bg.jpg"
+import { Helmet } from 'react-helmet-async';
 
 const OurMenu = () => {
     const menus = useMenu()
@@ -20,6 +21,9 @@ const OurMenu = () => {
    
     return (
       <div className="space-y-20">
+        <Helmet>
+            <title>Bistro Boss || Menu</title>
+        </Helmet>
         <Cover img={bannerImg} title="Our Menu"></Cover>
         <div className="p-5">
           <TileForHome
