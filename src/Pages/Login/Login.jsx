@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import bgImg from "../../assets/images/others/authentication.png"
 import img from "../../assets/images/others/authentication2.png"
+import {
+  loadCaptchaEnginge,
+  LoadCanvasTemplate,
+  validateCaptcha,
+} from "react-simple-captcha";
 const Login = () => {
+    useEffect(()=>{
+        loadCaptchaEnginge(6)
+    },[])
     return (
       <div
         className="bg-cover p-20  flex justify-center items-center"
@@ -37,13 +45,14 @@ const Login = () => {
               />
             </div>
             <div className="space-y-2">
-              <input
+              {/* <input
                 className="px-3 py-2 shadow-lg w-full md:w-2/3"
                 placeholder=""
                 type="text"
                 name="text"
                 id=""
-              />
+              /> */}
+              <LoadCanvasTemplate />
             </div>
             <div className="space-y-2">
               <input
