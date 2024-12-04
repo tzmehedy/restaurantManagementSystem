@@ -5,8 +5,9 @@ import { useEffect, useState } from "react";
 const useMenu = () => {
     const [menus, setMenus] = useState([]);
     useEffect(() => {
-      axios("menu.json").then((data) => {
-        setMenus(data.data)
+      axios("http://localhost:5000/menus").then((data) => {
+        setMenus(data.data);
+        console.log(data.data);
       });
     }, []);
     console.log(menus)

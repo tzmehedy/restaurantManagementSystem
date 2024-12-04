@@ -20,9 +20,8 @@ const Testimonials = () => {
         .then(data=>setTestimonials(data.data))
 
     },[])
-    console.log(testimonials)
     return (
-      <div>
+      <div className='pb-20'>
         <TileForHome
           heading="testimonials"
           subHeading="what our client say"
