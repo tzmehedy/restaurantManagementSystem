@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 const NavBar = () => {
+  const {user} = useContext(AuthContext)
     const navLinks = (
       <>
         <li>
@@ -22,6 +24,7 @@ const NavBar = () => {
         <li>
           <NavLink to={"/login"}>Login</NavLink>
         </li>
+        <p>{user}</p>
       </>
     );
     return (
@@ -46,7 +49,7 @@ const NavBar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-[#DDAA33] rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
               {navLinks}
             </ul>

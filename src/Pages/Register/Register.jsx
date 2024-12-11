@@ -1,70 +1,53 @@
-import React, { useContext, useEffect, useState } from 'react';
-import bgImg from "../../assets/images/others/authentication.png"
-import img from "../../assets/images/others/authentication2.png"
-import {
-  loadCaptchaEnginge,
-  LoadCanvasTemplate,
-  validateCaptcha,
-} from "react-simple-captcha";
+import React, { useContext } from 'react';
+import bgImg from "../../assets/images/others/authentication.png";
+import img from "../../assets/images/others/authentication2.png";
 import { Link } from 'react-router';
 import { AuthContext } from '../../Provider/AuthProvider';
-import Swal from "sweetalert2";
-const Login = () => {
-  const [active,setActive] = useState(false)
-  const {login} = useContext(AuthContext)
-    const handelLogin = (e) =>{
+
+const Register = () => {
+  const {createUser} = useContext(AuthContext)
+
+    const handelRegister = (e) =>{
         e.preventDefault()
         const form = e.target 
-        console.log(form)
+        const name = form.name.value 
         const email = form.email.value 
         const password = form.password.value 
-        login(email, password)
+        const photoURL = form.photoURL.value 
+
+        createUser(email,password)
         .then(result=>{
-          console.log("")
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "successfully login",
-            showConfirmButton: false,
-            timer: 1000,
-          });
+          console.log(result.user)
         })
         .catch(error=>{
           console.log(error.message)
         })
 
-
-
     }
-    useEffect(()=>{
-        loadCaptchaEnginge(6)
-    },[])
-
-    const getCaptchaText= (e) =>{
-        const text = e.target.value
-         if (validateCaptcha(text) == true) {
-           setActive(!active)
-         } else {
-           alert("Captcha Does Not Match");
-           setActive(!active)
-         }
-    }
-    
     return (
       <div
         className="bg-cover p-20  flex justify-center items-center"
         style={{ backgroundImage: `url(${bgImg})` }}
       >
         <div
-          className=" w-full border-gray-500 shadow-xl flex flex-col md:flex-row justify-center p-10"
+          className=" w-full border-gray-500 shadow-xl flex flex-col md:flex-row-reverse justify-center p-10"
           style={{ backgroundImage: `url(${bgImg})` }}
         >
           <div className="md:w-1/2">
             <img src={img} alt="" />
           </div>
           <div className="md:w-1/2 space-y-3">
-            <form onSubmit={handelLogin} className=" space-y-3">
-              <h1 className="text-center text-xl font-bold">Login</h1>
+            <form onSubmit={handelRegister} className=" space-y-3">
+              <h1 className="text-center text-xl font-bold">Sign Up</h1>
+              <div className="space-y-2">
+                <label htmlFor="name">Name</label> <br />
+                <input
+                  className="px-3 py-2 shadow-lg w-full md:w-2/3"
+                  placeholder="Enter Your Name"
+                  type="text"
+                  name="name"
+                />
+              </div>
               <div className="space-y-2">
                 <label htmlFor="email">Email</label> <br />
                 <input
@@ -84,30 +67,31 @@ const Login = () => {
                 />
               </div>
               <div className="space-y-2">
-                <LoadCanvasTemplate />
-              </div>
-              <div className="space-y-2">
+                <label htmlFor="photoURL">Photo URL</label> <br />
                 <input
-                  onBlur={getCaptchaText}
                   className="px-3 py-2 shadow-lg w-full md:w-2/3"
-                  placeholder="Type here"
+                  placeholder="Enter Your Photo URL"
                   type="text"
-                  name="recaptchaText"
+                  name="photoURL"
                 />
               </div>
+              
+             
               <input
                 className="btn bg-[#DEAB34] w-full md:w-2/3"
-                disabled={active === false}
                 type="submit"
-                value="Login"
+                value="Register"
               />
             </form>
 
             <div className="w-full md:w-2/3">
               <p>
-                If you have not register please{" "}
-                <Link to={"/register"} className="underline text-[#DDAA33] font-bold">
-                  register
+                If you are register please{" "}
+                <Link
+                  to={"/login"}
+                  className="underline text-[#DDAA33] font-bold"
+                >
+                  login
                 </Link>
               </p>
             </div>
@@ -117,4 +101,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Register;
