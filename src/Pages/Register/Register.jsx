@@ -1,11 +1,13 @@
 import React, { useContext } from 'react';
 import bgImg from "../../assets/images/others/authentication.png";
 import img from "../../assets/images/others/authentication2.png";
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../../Provider/AuthProvider';
+import { toast } from 'react-toastify';
 
 const Register = () => {
   const {createUser} = useContext(AuthContext)
+  const navigate = useNavigate()
 
     const handelRegister = (e) =>{
         e.preventDefault()
@@ -17,7 +19,8 @@ const Register = () => {
 
         createUser(email,password)
         .then(result=>{
-          console.log(result.user)
+          toast.success("Register Successfully Completed")
+          navigate("/")
         })
         .catch(error=>{
           console.log(error.message)

@@ -6,13 +6,15 @@ import {
   LoadCanvasTemplate,
   validateCaptcha,
 } from "react-simple-captcha";
-import { Link, useLocation, useNavigate } from 'react-router';
+import { Link, replace, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../../Provider/AuthProvider';
 import Swal from "sweetalert2";
 const Login = () => {
   const [active,setActive] = useState(false)
   const {login} = useContext(AuthContext)
   const location = useLocation()
+  const from = location.state?.from?.pathname || "/"
+  console.log(location)
   const navigate = useNavigate()
     const handelLogin = (e) =>{
         e.preventDefault()
@@ -30,7 +32,7 @@ const Login = () => {
             timer: 1000,
             
           });
-          navigate(location.state ? location.state : "/")
+          navigate(from, { replace: true });
         })
         .catch(error=>{
           console.log(error.message)

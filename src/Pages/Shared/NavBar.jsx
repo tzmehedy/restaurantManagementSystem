@@ -3,14 +3,17 @@ import { NavLink } from 'react-router';
 import { FaShoppingCart } from "react-icons/fa";
 import useCarts from '../../Hooks/useCarts';
 import useAuth from '../../Hooks/useAuth';
+import { toast } from 'react-toastify';
 
 const NavBar = () => {
   const { user, Logout } = useAuth();
   const [carts] = useCarts()
   const handelLogout = () =>{
-    
-
-
+    Logout()
+    .then(data=>{
+      toast.success("Successfully Logout")
+    })
+    .then(error=>toast.error(`${error.message}`))
   }
     const navLinks = (
       <>
@@ -39,12 +42,18 @@ const NavBar = () => {
           </li>
         )}
         <li>
-          <NavLink to={"/cart"} className="">
+          <NavLink to={"/cart"} className="bg-green-600 rounded-full">
             <button className="flex items-center relative">
               <FaShoppingCart className="text-xl"></FaShoppingCart>
-              <div className="-top-1  -right-1 text-gray-800 font-bold absolute">
-                {carts.length}
-              </div>
+              {user ? (
+                <div className="-bottom-2  -right-2 text-orange-500 font-bold absolute">
+                  {carts.length}
+                </div>
+              ) : (
+                <div className="-top-1  -right-1 text-orange-500 font-bold absolute">
+                  0
+                </div>
+              )}
             </button>
           </NavLink>
         </li>
