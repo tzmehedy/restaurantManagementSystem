@@ -6,12 +6,14 @@ import {
   LoadCanvasTemplate,
   validateCaptcha,
 } from "react-simple-captcha";
-import { Link } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../../Provider/AuthProvider';
 import Swal from "sweetalert2";
 const Login = () => {
   const [active,setActive] = useState(false)
   const {login} = useContext(AuthContext)
+  const location = useLocation()
+  const navigate = useNavigate()
     const handelLogin = (e) =>{
         e.preventDefault()
         const form = e.target 
@@ -20,14 +22,15 @@ const Login = () => {
         const password = form.password.value 
         login(email, password)
         .then(result=>{
-          console.log("")
           Swal.fire({
             position: "top-end",
             icon: "success",
             title: "successfully login",
             showConfirmButton: false,
             timer: 1000,
+            
           });
+          navigate(location.state ? location.state : "/")
         })
         .catch(error=>{
           console.log(error.message)
