@@ -42,15 +42,18 @@ const NavBar = () => {
           </li>
         )}
         <li>
-          <NavLink to={"/dashboard/carts"} className="bg-green-600 rounded-full">
+          <NavLink
+            to={"/dashboard/carts"}
+            className="bg-green-600 rounded-full"
+          >
             <button className="flex items-center relative">
               <FaShoppingCart className="text-xl"></FaShoppingCart>
               {user ? (
-                <div className="-bottom-2  -right-2 text-orange-500 font-bold absolute">
+                <div className="-bottom-2  -right-2 text-red-700 font-bold absolute">
                   {carts.length}
                 </div>
               ) : (
-                <div className="-top-1  -right-1 text-orange-500 font-bold absolute">
+                <div className="-top-1  -right-1 text-red-700  font-bold absolute">
                   0
                 </div>
               )}

@@ -3,12 +3,14 @@ import TileForHome from '../../../Components/TileForHome';
 import useCarts from '../../../Hooks/useCarts';
 import { MdDelete } from "react-icons/md";
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
 const Carts = () => {
-    const [carts] = useCarts()
+    const [carts,refetch] = useCarts()
     const totalPrice = carts.reduce((total, cart)=> total + cart.price,0)
+    const axiosSecure = useAxiosSecure()
 
-    const handelDelete = () =>{
+    const handelDelete = (_id) =>{
         Swal.fire({
           title: "Are you sure?",
           text: "You won't be able to revert this!",
@@ -19,11 +21,17 @@ const Carts = () => {
           confirmButtonText: "Yes, delete it!",
         }).then((result) => {
           if (result.isConfirmed) {
-            Swal.fire({
-              title: "Deleted!",
-              text: "Your file has been deleted.",
-              icon: "success",
-            });
+            axiosSecure.delete(`/carts/${_id}`)
+            .then(data=>{
+                refetch()
+                if(data.data.deletedCount>0){
+                    Swal.fire({
+                      title: "Deleted!",
+                      text: "Your file has been deleted.",
+                      icon: "success",
+                    });
+                }
+            })
           }
         });
     }
@@ -80,7 +88,7 @@ const Carts = () => {
                       <td>${cart.price}</td>
                       <th>
                         <button
-                          onClick={handelDelete}
+                          onClick={()=>handelDelete(cart._id)}
                           className="btn text-xl text-red-700"
                         >
                           <MdDelete />
