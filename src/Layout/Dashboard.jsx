@@ -5,8 +5,8 @@ import { FaShop } from "react-icons/fa6";
 
 const Dashboard = () => {
     return (
-      <div className="container mx-auto flex">
-        <div className="bg-[#CB7B04] w-64 h-screen p-4 menu">
+      <div className="container mx-auto flex flex-col md:flex-row">
+        <div className="bg-[#CB7B04] w-full md:w-1/5 h-100vh p-4 menu">
           <ul className="space-y-3">
             <li>
               <NavLink className=" bg-white text-start w-full" to={"/"}>
@@ -52,7 +52,7 @@ const Dashboard = () => {
           </ul>
         </div>
 
-        <div className="flex-1 border border-red-700 p-8">
+        <div className="flex-1 p-8">
           <Outlet></Outlet>
         </div>
       </div>
