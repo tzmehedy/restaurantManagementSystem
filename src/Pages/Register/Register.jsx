@@ -1,13 +1,17 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import bgImg from "../../assets/images/others/authentication.png";
 import img from "../../assets/images/others/authentication2.png";
 import { Link, useNavigate } from 'react-router';
-import { AuthContext } from '../../Provider/AuthProvider';
+
 import { toast } from 'react-toastify';
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
+import useAuth from '../../Hooks/useAuth';
 
 const Register = () => {
-  const {createUser} = useContext(AuthContext)
+  const { createUser, updateUser,user } = useAuth();
+
   const navigate = useNavigate()
+  const axiosPublic = useAxiosPublic()
 
     const handelRegister = (e) =>{
         e.preventDefault()
@@ -19,6 +23,15 @@ const Register = () => {
 
         createUser(email,password)
         .then(result=>{
+          updateUser(name, photoURL)
+          const userInfo = {
+            name: name,
+            email: result.user.email,
+          };
+          axiosPublic.post("/users", userInfo)
+          .then(data=>{
+            console.log(data.data)
+          })
           toast.success("Register Successfully Completed")
           navigate("/")
         })
@@ -27,6 +40,9 @@ const Register = () => {
         })
 
     }
+
+    console.log(user)
+
     return (
       <div
         className="bg-cover p-20  flex justify-center items-center"

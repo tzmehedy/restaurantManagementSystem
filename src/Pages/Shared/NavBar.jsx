@@ -1,4 +1,3 @@
-
 import { NavLink } from 'react-router';
 import { FaShoppingCart } from "react-icons/fa";
 import useCarts from '../../Hooks/useCarts';
