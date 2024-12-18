@@ -42,7 +42,7 @@ const NavBar = () => {
           </li>
         )}
         <li>
-          <NavLink to={"/cart"} className="bg-green-600 rounded-full">
+          <NavLink to={"/dashboard/carts"} className="bg-green-600 rounded-full">
             <button className="flex items-center relative">
               <FaShoppingCart className="text-xl"></FaShoppingCart>
               {user ? (
