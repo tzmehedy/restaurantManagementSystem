@@ -12,7 +12,7 @@ const Users = () => {
     const {data: users = [],refetch} = useQuery({
         queryKey: ['users'],
         queryFn: async()=>{
-            const data = await axiosSecure.get("/users")
+            const data = await axiosSecure.get("/users");
             return data.data
         }
     })
@@ -97,7 +97,7 @@ const Users = () => {
                   {/* row 1 */}
 
                   {users.map((user, index) => (
-                    <tr key={user.id}>
+                    <tr key={user._id}>
                       <th>{index + 1}</th>
                       <td>{user.name}</td>
                       <td>{user.email}</td>
