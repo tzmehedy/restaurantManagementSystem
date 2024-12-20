@@ -9,17 +9,16 @@ import {
 import { Link, replace, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../../Provider/AuthProvider';
 import Swal from "sweetalert2";
+import useAuth from '../../Hooks/useAuth';
 const Login = () => {
   const [active,setActive] = useState(false)
-  const {login} = useContext(AuthContext)
+  const {login} = useAuth(AuthContext)
   const location = useLocation()
   const from = location.state?.from?.pathname || "/"
-  console.log(location)
   const navigate = useNavigate()
     const handelLogin = (e) =>{
         e.preventDefault()
         const form = e.target 
-        console.log(form)
         const email = form.email.value 
         const password = form.password.value 
         login(email, password)
@@ -102,7 +101,7 @@ const Login = () => {
               </div>
               <input
                 className="btn bg-[#DEAB34] w-full md:w-2/3"
-                disabled={active === false}
+                // disabled={active === false}
                 type="submit"
                 value="Login"
               />

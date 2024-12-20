@@ -4,10 +4,15 @@ import { NavLink, Outlet } from 'react-router';
 import { FaShop } from "react-icons/fa6";
 import useCarts from '../Hooks/useCarts';
 import { ImSpoonKnife } from "react-icons/im";
+import useAdmin from '../Hooks/useAdmin';
 
 const Dashboard = () => {
     const [carts] = useCarts()
-    const isAdmin = true
+
+    const [isAdmin] = useAdmin()
+    // console.log(isAdmin)
+    
+    // const isAdmin = true
     return (
       <div className="container mx-auto flex flex-col md:flex-row">
         <div className="bg-[#CB7B04] w-full md:w-1/5 h-screen p-4 menu">

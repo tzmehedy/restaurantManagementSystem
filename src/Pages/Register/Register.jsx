@@ -1,7 +1,7 @@
 import React from 'react';
 import bgImg from "../../assets/images/others/authentication.png";
 import img from "../../assets/images/others/authentication2.png";
-import { Link, useNavigate } from 'react-router';
+import { Link, replace, useNavigate } from 'react-router';
 
 import { toast } from 'react-toastify';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
@@ -33,7 +33,7 @@ const Register = () => {
             console.log(data.data)
           })
           toast.success("Register Successfully Completed")
-          navigate("/")
+          navigate("/", { replace: true });
         })
         .catch(error=>{
           console.log(error.message)

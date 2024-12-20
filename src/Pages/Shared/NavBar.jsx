@@ -42,7 +42,7 @@ const NavBar = () => {
         )}
         <li>
           <NavLink
-            to={"/dashboard/carts"}
+            to={"/dashboard"}
             className="bg-green-600 rounded-full"
           >
             <button className="flex items-center relative">
