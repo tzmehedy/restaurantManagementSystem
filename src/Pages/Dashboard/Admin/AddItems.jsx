@@ -1,17 +1,48 @@
 import React from "react";
 import TileForHome from "../../../Components/TileForHome";
 import { useForm } from "react-hook-form";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { toast } from "react-toastify";
 
 const AddItems = () => {
+    const axiosPublic = useAxiosPublic()
+    const axiosSecure = useAxiosSecure()
   const {
     register,
     handleSubmit,
     reset
   } = useForm();
+  const imgUploadKey = import.meta.env.VITE_imgbb_apiKey
+  const url = `https://api.imgbb.com/1/upload?key=${imgUploadKey}`;
 
-  const onSubmit = (data) => {
-    console.log(data);
-    reset()
+ console.log(imgUploadKey,url)
+  const onSubmit = async(data) => {
+    console.log(data)
+    const imgFile = { image: data.image[0] }
+    const res = await axiosPublic.post(url, imgFile, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    });
+    console.log(res.data)
+    if(res.data){
+        const item = {
+            name: data.name,
+            category: data.category,
+            recipe:data.recipe,
+            price: parseFloat(data.price),
+            image: res.data.data.display_url
+        }
+
+        console.log(item)
+
+        const menuRes = await axiosSecure.post("/menus", item)
+        if(menuRes.data.insertedId){
+            reset()
+            toast.success("The Item successfully added")
+        }
+    }
   }
   return (
     <div>
