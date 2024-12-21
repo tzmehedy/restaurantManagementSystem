@@ -14,7 +14,7 @@ const useMenu = () => {
     // }, []);
     // return menus
 
-    const {data:menus=[]} = useQuery({
+    const {data:menus=[], refetch} = useQuery({
       queryKey: ['menus'],
       queryFn: async()=>{
         const res =  await axiosPublic.get("/menus")
@@ -23,7 +23,7 @@ const useMenu = () => {
       }
     })
      console.log(menus);
-    return [menus]
+    return [menus, refetch]
 };
 
 export default useMenu;
