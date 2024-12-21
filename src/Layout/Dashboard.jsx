@@ -37,6 +37,15 @@ const Dashboard = () => {
                 <li>
                   <NavLink
                     className=" bg-white text-start w-full"
+                    to={"/dashboard/manageItems"}
+                  >
+                    <ImSpoonKnife></ImSpoonKnife>
+                    Manage Items
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className=" bg-white text-start w-full"
                     to={"/dashboard/bookings"}
                   >
                     <FaCalendar></FaCalendar>

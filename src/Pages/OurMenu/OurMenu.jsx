@@ -12,7 +12,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router';
 
 const OurMenu = () => {
-    const menus = useMenu()
+    const [menus] = useMenu()
     const offered = menus.filter(item=> item.category === "offered")
     const pizzas = menus.filter(item=> item.category === "pizza")
     const salads = menus.filter(item=> item.category === "salad")

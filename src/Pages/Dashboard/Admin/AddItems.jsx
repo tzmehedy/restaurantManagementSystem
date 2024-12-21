@@ -15,17 +15,15 @@ const AddItems = () => {
   } = useForm();
   const imgUploadKey = import.meta.env.VITE_imgbb_apiKey
   const url = `https://api.imgbb.com/1/upload?key=${imgUploadKey}`;
-
- console.log(imgUploadKey,url)
   const onSubmit = async(data) => {
-    console.log(data)
+    
     const imgFile = { image: data.image[0] }
     const res = await axiosPublic.post(url, imgFile, {
       headers: {
         "content-type": "multipart/form-data",
       },
     });
-    console.log(res.data)
+    
     if(res.data){
         const item = {
             name: data.name,
@@ -34,9 +32,6 @@ const AddItems = () => {
             price: parseFloat(data.price),
             image: res.data.data.display_url
         }
-
-        console.log(item)
-
         const menuRes = await axiosSecure.post("/menus", item)
         if(menuRes.data.insertedId){
             reset()
@@ -101,7 +96,6 @@ const AddItems = () => {
           <div>
             <input {...register("image")} type="file" className="file-input w-full max-w-xs" />
           </div>
-
           <input className="btn" type="submit" value="Add Item" />
         </form>
       </div>

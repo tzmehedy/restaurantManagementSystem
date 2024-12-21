@@ -9,7 +9,7 @@ import Menus from '../../Components/Menu/Menus';
 import { useParams } from 'react-router';
 
 const Shop = () => {
-    const menus = useMenu()
+    const [menus] = useMenu()
     const categories = ["salad","pizza","soup", "dessert", "drinks"]
     const category = useParams()
     const index = categories.indexOf(category.category)
