@@ -28,7 +28,7 @@ const Testimonials = () => {
         ></TileForHome>
         <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
           {testimonials.map((testimonial) => (
-            <SwiperSlide>
+            <SwiperSlide key={testimonial._id}>
               <div className="text-center space-y-10">
                 <div className="flex justify-center">
                   <Rating

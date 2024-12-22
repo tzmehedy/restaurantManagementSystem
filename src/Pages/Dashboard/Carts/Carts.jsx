@@ -4,6 +4,7 @@ import useCarts from '../../../Hooks/useCarts';
 import { MdDelete } from "react-icons/md";
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import { Link } from 'react-router';
 
 const Carts = () => {
     const [carts,refetch] = useCarts()
@@ -51,7 +52,7 @@ const Carts = () => {
               Total Price: ${Math.ceil(totalPrice)}
             </h1>
             <button className="btn border-none bg-[#D1A054] font-bold">
-              Pay
+              <Link to={"/dashboard/payment"}>Pay</Link>
             </button>
           </div>
           <div className="divider"></div>
@@ -59,7 +60,6 @@ const Carts = () => {
           <div>
             <div className="overflow-x-auto">
               <table className="table">
-                {/* head */}
                 <thead>
                   <tr>
                     <th>#</th>
@@ -70,10 +70,9 @@ const Carts = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {/* row 1 */}
 
                   {carts.map((cart, index) => (
-                    <tr key={cart.id}>
+                    <tr key={cart._id}>
                       <th>{index + 1}</th>
                       <td>
                         <div className="flex items-center gap-3">
