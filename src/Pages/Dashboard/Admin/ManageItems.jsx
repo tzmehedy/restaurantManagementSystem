@@ -5,6 +5,7 @@ import { MdDelete } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router';
 
 
 const ManageItems = () => {
@@ -81,7 +82,9 @@ const ManageItems = () => {
                       <td>${menu.price}</td>
                       <th className="">
                         <button className="btn btn-ghost text-xl">
-                          <FaRegEdit></FaRegEdit>
+                          <Link to={`/dashboard/updateItems/${menu._id}`}>
+                            <FaRegEdit></FaRegEdit>
+                          </Link>
                         </button>
                         <button
                           onClick={() => handelDelete(menu._id)}
